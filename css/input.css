@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+    font-family: "Alegreya", serif;
+}
+
+.modal {
+    @apply w-full h-full bg-slate-200/60 absolute hidden inset-0 items-center justify-center;
+}
+
+.modal.active {
+    @apply flex;
+}
+
+ul li.active {
+    @apply bg-blue-300;
+}

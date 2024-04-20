@@ -44,10 +44,8 @@ function postRequest(){
 function putRequest(id){
 
     var dados = new URLSearchParams();
-    dados.append('numero', document.querySelector('input[name="numero"]').value);
     dados.append('capacidade_maxima', document.querySelector('input[name="capacidade"]').value);
-    dados.append('valor_diaria', document.querySelector('input[name="valor"]').value);
-    //dados.append('status', document.querySelector('input[name="status"]').value);
+    dados.append('valor_diaria', document.querySelector('input[name="valor"]').value);  
 
 
    return fetch(`${configs.apiUrl}?id=${id}`, {
@@ -118,26 +116,26 @@ async function renderTable(){
             <tr>
             <td
                 class="px-5 py-3 border-b border-slate-200 first:pl-3 last:pr-3 last:from-transparent last:to-white last:to-[12px] last:pl-5 last:sticky last:right-0">
-                <div class="text-slate-500">${index + 1}
+                <div class="text-slate-500" >${index + 1}
                 </div>
             </td>
             <td class="px-5 py-3 border-b border-slate-200 first:pl-3 last:pr-3 last:from-transparent last:to-white last:to-[12px] last:pl-5 last:sticky last:right-0">
-                <div class="text-slate-900">${data.numero}</div>
+                <div class="text-slate-900 ">${data.numero}</div>
             </td>
             <td
                 class="px-5 py-3 border-b border-slate-200 first:pl-3 last:pr-3 last:from-transparent last:to-white last:to-[12px] last:pl-5 last:sticky last:right-0">
-                <div class="text-slate-500">${data.capacidade_maxima}</div>
+                <div class="text-slate-500" id="capacidadeColuna">${data.capacidade_maxima}</div>
             </td>
             <td
                 class="px-5 py-3 border-b border-slate-200 first:pl-3 last:pr-3 last:from-transparent last:to-white last:to-[12px] last:pl-5 last:sticky last:right-0">
-                <div class="text-slate-900">${data.valor_diaria}</div>
+                <div class="text-slate-900" id="valorColuna">${data.valor_diaria}</div>
             </td>
             <td
                 class="px-5 py-3 border-b border-slate-200 first:pl-3 last:pr-3 last:from-transparent last:to-white last:to-[12px] last:pl-5 last:sticky last:right-0">
-                <div class="text-slate-900">${data.vago == true ? "Vago" : "Ocupado"}</div>
+                <div class="text-slate-900" id="statusColuna">${data.vago == true ? "Vago" : "Ocupado"}</div>
             </td>
             <td class="px-5 py-3 border-b border-slate-200 first:pl-3 last:pr-3 last:from-transparent last:to-white last:to-[12px] last:pl-5 last:sticky last:right-0">
-                <button class="text-xs bg-green-500 text-white p-2 rounded-sm mr-2" onclick="editModal(${data.id})">Alterar</button>
+                <button class="text-xs bg-green-500 text-white p-2 rounded-sm mr-2" onclick="editModal(this,${data.id})">Alterar</button>
                 <button class="text-xs bg-red-500 text-white p-2 rounded-sm mr-2" onclick="delModal(${data.id})">Deletar</button>
             </td>
         </tr>`
@@ -155,15 +153,15 @@ function createModal(){
     <div class="px-4 py-4 flex flex-col gap-4">
         <div>
             <label class="mr-4" for="">Nº Quarto</label>
-            <input class="bg-gray-200 outline-none border-black border-[1px] rounded-md px-2 py-1" id="quartoColuna" name="numero">
+            <input class="bg-gray-200 outline-none border-black border-[1px] rounded-md px-2 py-1"  name="numero">
         </div>
         <div>
             <label class="mr-4" for="">Capacidade</label>
-            <input class="bg-gray-200 outline-none border-black border-[1px] rounded-md px-2 py-1" id="capacidadeColuna" name="capacidade">
+            <input class="bg-gray-200 outline-none border-black border-[1px] rounded-md px-2 py-1" name="capacidade">
         </div>
         <div>
             <label class="mr-4" for="">Valor</label>
-            <input class="bg-gray-200 outline-none border-black border-[1px] rounded-md px-2 py-1" id="valorColuna" name="valor">
+            <input class="bg-gray-200 outline-none border-black border-[1px] rounded-md px-2 py-1"  name="valor">
         </div>
         <div class="mt-4 flex justify-between">
             <button class="text-xs bg-green-500 text-white py-2 px-4 rounded-sm mr-2"
@@ -184,20 +182,12 @@ function editModal(item, id){
     <div class="px-4 py-2 border-b-[1px] border-gray-600">Alterar</div>
     <div class="px-4 py-4 flex flex-col gap-4">
         <div>
-            <label class="mr-4" for="">Nº Quarto</label>
-            <input class="bg-gray-200 outline-none border-black border-[1px] rounded-md px-2 py-1" value="${parent.querySelector('#quartoColuna').innerText}" name="numero" type="text">
-        </div>
-        <div>
             <label class="mr-4" for="">Capacidade</label>
             <input class="bg-gray-200 outline-none border-black border-[1px] rounded-md px-2 py-1" value="${parent.querySelector('#capacidadeColuna').innerText}" name="capacidade" type="text">
         </div>
         <div>
             <label class="mr-4" for="">Valor</label>
             <input class="bg-gray-200 outline-none border-black border-[1px] rounded-md px-2 py-1" value="${parent.querySelector('#valorColuna').innerText}" name="valor" type="number">
-        </div>
-        <div>
-            <label class="mr-4" for="">Status</label>
-            <input class="bg-gray-200 outline-none border-black border-[1px] rounded-md px-2 py-1" value="${parent.querySelector('#statusColuna').innerText}" name="status" type="email">
         </div>
         <div class="mt-4 flex justify-between">
             <button class="text-xs bg-green-500 text-white py-2 px-4 rounded-sm mr-2"
@@ -207,6 +197,22 @@ function editModal(item, id){
         </div>
     </div>
 </div>`
+}
+
+function resultModal(message){
+
+    modalContent.innerHTML = `<div class="w-[250px] h-fit bg-white text-black">
+    <div class="px-4 py-2 border-b-[1px] border-gray-600">Resultado</div>
+    <div class="px-4 py-4">
+        <p>${message}</p>
+        <div class="mt-4 flex justify-between">
+            <button class="text-xs bg-green-500 text-white py-2 px-4 rounded-sm mr-2"
+                onclick="modalClose()">Confirmar</button>
+        </div>
+    </div>
+</div>`;
+
+    renderTable();
 }
 
 function delModal(id){

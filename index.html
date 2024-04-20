@@ -14,20 +14,23 @@
 
     <!--CSS PADRÃO-->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/reserva.css">
 
+
+    <script src="./js/fazerReserva.js" defer></script>
     <!--REMIX ICONS-->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.min.css" rel="stylesheet">
 
+
+
     <style>
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
+        
+        .quarto-card > input[type=radio]:checked + label{
+            background-color: rgb(147 197 253);
         }
 
-        /* Estilo para linhas ímpares */
-        tr:nth-child(odd) {
-            background-color: #ffffff;
-        }
     </style>
+
     <title>Gerenciamento de reservas</title>
 </head>
 
@@ -39,29 +42,21 @@
         </div>
         <div class="mt-8">
             <ul>
-                <li class="mt-3 text-lg rounded-lg p-2 hover:bg-blue-300 transition-all duration-300 ease-in-out">
+                <li class="active mt-3 text-lg rounded-lg p-2 hover:bg-blue-300 transition-all duration-300 ease-in-out">
                     <i class="ri-user-3-fill mr-2"></i>
-                    <a href="">Dashboard</a>
+                    <a href="./index.html">Fazer Reserva</a>
                 </li>
                 <li class="mt-3 text-lg rounded-lg p-2 hover:bg-blue-300 transition-all duration-300 ease-in-out">
                     <i class="ri-user-3-fill mr-2"></i>
-                    <a href="">Charts</a>
+                    <a href="./reservas.html">Reservas</a>
                 </li>
                 <li class="mt-3 text-lg rounded-lg p-2 hover:bg-blue-300 transition-all duration-300 ease-in-out">
                     <i class="ri-user-3-fill mr-2"></i>
-                    <a href="">History</a>
+                    <a href="./quartos.html">Quartos</a>
                 </li>
                 <li class="mt-3 text-lg rounded-lg p-2 hover:bg-blue-300 transition-all duration-300 ease-in-out">
                     <i class="ri-user-3-fill mr-2"></i>
                     <a href="./clientes.html">Clientes</a>
-                </li>
-                <li class="mt-3 text-lg rounded-lg p-2 hover:bg-blue-300 transition-all duration-300 ease-in-out">
-                    <i class="ri-user-3-fill mr-2"></i>
-                    <a href="">Settings</a>
-                </li>
-                <li class="mt-3 text-lg rounded-lg p-2 hover:bg-blue-300 transition-all duration-300 ease-in-out">
-                    <i class="ri-user-3-fill mr-2"></i>
-                    <a href="">Loggout</a>
                 </li>
             </ul>
         </div>
@@ -70,7 +65,7 @@
     <main>
         <header class="order-last py-6 px-12 flex justify-between h-fit">
             <div>
-                <h1 class="uppercase text-4xl">Cadastrar Reserva</h1>
+                <h1 class="uppercase text-4xl">Fazer Reserva</h1>
             </div>
             <div class="header-nav flex items-center">
                 <form action="" class="search w-fit">
@@ -91,76 +86,79 @@
             </div>
         </header>
 
-        <section class="mt-16 flex justify-center container mx-auto relative">
-            <table id="tabela-contatos">
-                <table class="table-auto w-full">
-                    <!-- Table header -->
-                    <thead class="text-[13px] text-slate-500/70">
-                        <tr>
-                            <th
-                                class="px-5 py-2 first:pl-3 last:pr-3 bg-slate-100 first:rounded-l last:rounded-r last:pl-5 last:sticky last:right-0">
-                                <div class="font-medium text-left">#</div>
-                            </th>
-                            <th
-                                class="px-5 py-2 first:pl-3 last:pr-3 bg-slate-100 first:rounded-l last:rounded-r last:pl-5 last:sticky last:right-0">
-                                <div class="font-medium text-left">Nome</div>
-                            </th>
-                            <th
-                                class="px-5 py-2 first:pl-3 last:pr-3 bg-slate-100 first:rounded-l last:rounded-r last:pl-5 last:sticky last:right-0">
-                                <div class="font-medium text-left">Sobrenome</div>
-                            </th>
-                            <th
-                                class="px-5 py-2 first:pl-3 last:pr-3 bg-slate-100 first:rounded-l last:rounded-r last:pl-5 last:sticky last:right-0">
-                                <div class="font-medium text-left">Telefone</div>
-                            </th>
-                            <th
-                                class="px-5 py-2 first:pl-3 last:pr-3 bg-slate-100 first:rounded-l last:rounded-r last:pl-5 last:sticky last:right-0">
-                                <div class="font-medium text-left">Email</div>
-                            </th>
-                            <th
-                            class="px-5 py-2 first:pl-3 last:pr-3 bg-slate-100 first:rounded-l last:rounded-r last:pl-5 last:sticky last:right-0">
-                            <div class="font-medium text-left">Ações</div>
-                        </th>
-                        </tr>
-                    </thead>
-                    <!-- Table body -->
-                    <tbody class="text-sm font-medium">
-                        <!-- Row -->
-                        <tr>
-                            <td
-                                class="px-5 py-3 border-b border-slate-200 first:pl-3 last:pr-3 last:bg-gradient-to-r last:from-transparent last:to-white last:to-[12px] last:pl-5 last:sticky last:right-0">
-                                <div class="text-slate-500">1</div>
-                            </td>
-                            <td class="px-5 py-3 border-b border-slate-200 first:pl-3 last:pr-3 last:bg-gradient-to-r last:from-transparent last:to-white last:to-[12px] last:pl-5 last:sticky last:right-0">
-                                <div class="text-slate-900">Juan</div>
-                            </td>
-                            <td
-                                class="px-5 py-3 border-b border-slate-200 first:pl-3 last:pr-3 last:bg-gradient-to-r last:from-transparent last:to-white last:to-[12px] last:pl-5 last:sticky last:right-0">
-                                <div class="text-slate-500">Azevedo</div>
-                            </td>
-                            <td
-                                class="px-5 py-3 border-b border-slate-200 first:pl-3 last:pr-3 last:bg-gradient-to-r last:from-transparent last:to-white last:to-[12px] last:pl-5 last:sticky last:right-0">
-                                <div class="text-slate-900">21996260905</div>
-                            </td>
-                            <td
-                                class="px-5 py-3 border-b border-slate-200 first:pl-3 last:pr-3 last:bg-gradient-to-r last:from-transparent last:to-white last:to-[12px] last:pl-5 last:sticky last:right-0">
-                                <div class="text-slate-900">juanmatheus@gmail.com</div>
-                            </td>
-                        </tr>
-                        <!-- Row -->
+        <section class="mt-16 flex flex-col justify-center container mx-auto">
+            <div class="step-1 border-[1px] border-gray-600 p-4 text-2xl">
+                    <p class="text-2xl">Selecione o periodo: </p>
 
-                    </tbody>
-                </table>
-                <tbody>
-                    <!-- Os dados serão inseridos aqui via JavaScript -->
-                </tbody>
-            </table>
-            
+                    <div class="flex py-8 gap-8 ">
+                        <div class="checkin flex flex-col gap-4">
+                            <label for="data_checkin">Data de entrada</label>
+                            <input  class="border-[1px] border-green-400 p-4" id="data_checkin" type="date" required>
+                        </div>
+                        <div class="checkout flex flex-col gap-4">
+                            <label for="data_checkout">Data de saída</label>
+                            <input  class="border-[1px] border-green-400 p-4" id="data_checkout" type="date" required>
+                        </div>
+                    </div>
 
+                    <div class="flex py-8 gap-8 ">
+                        <div class="checkout flex flex-col gap-4">
+                            <label for="qtd_pessoas">Quantidade pessoas</label>
+                            <input  class="border-[1px] border-green-400 p-4" id="qtd_pessoas" type="number" required>
+                        </div>
+                    </div>
+                    <button onclick="setDate()" class="proximo-step-1 py-2 px-4 bg-blue-300 rounded-md">Procurar Quartos</button>
+            </div>
+            <div class="step-2 hidden border-[1px] border-gray-600 p-4 text-2xl">
+                    <p class="text-2xl">Selecione o quarto: </p>
+                
+                    <div class="flex flex-col py-8 gap-8 quarto-list">
+                       
+                    </div>
+                    <button onclick="setQuarto()" class="proximo-step-1 py-2 px-4 bg-blue-300 rounded-md">Dados do cliente</button>
+            </div>
+            <div class="step-3 hidden border-[1px] border-gray-600 p-4 text-2xl">
+                    <p class="text-2xl">Dados do Cliente: </p>
+
+                        <div class="py-4">
+                            <div>
+                                <label class="mr-4" for="">Email</label>
+                                <input class="bg-gray-200 outline-none border-black border-[1px] rounded-md px-2 py-1" type="email" name="email" required>
+                                <button onclick="getUsers()" class="ml-4 py-1 px-4 rounded-md bg-green-500 text-white search-cliente">Buscar</button>
+                                <a href="./clientes.html" class="hidden ml-4 py-1 px-4 rounded-md bg-green-500 text-white cadastrar-cliente" target="_blank">Cadastrar Cliente</a>
+                            </div>
+                            <span class="text-red-500 hidden error-not-found">Cliente não encontrado</span>
+                           
+                        </div>
+                        <div class="dados-container">
+                            <div class="py-4">
+                                <label class="mr-4" for="">Nome</label>
+                                <input class="bg-gray-200 outline-none  border-black border-[1px] rounded-md px-2 py-1" type="text" name="nome" readonly>
+                            </div>
+                            <div class="py-4">
+                                <label class="mr-4" for="">Sobrenome</label>
+                                <input class="bg-gray-200 outline-none  border-black border-[1px] rounded-md px-2 py-1" type="text" name="sobrenome" readonly>
+                            </div>
+                            <div class="py-4">
+                                <label class="mr-4" for="">Telefone</label>
+                                <input class="bg-gray-200 outline-none  border-black border-[1px] rounded-md px-2 py-1" type="tel"  name="telefone" readonly>
+                            </div>
+                        </div>
+                        <button class="btn-finalizar hidden py-1 px-4 rounded-md bg-green-500 text-white" onclick="finalizarReserva()">Finalizar Reserva</button>
+            </div>
         </section>
     </main>
+    <div class="modal">
+        <div class="modal-content">
+           
+        </div>
+    </div>
+    <!--DATA LIST-->
+    <script src="./js/reserva.js"></script>
     <script>
-
+        init(".clientes tbody", {
+            apiUrl: "http://127.0.0.1:5000/reservas"
+        })
     </script>
 </body>
 

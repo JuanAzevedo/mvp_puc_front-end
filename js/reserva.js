@@ -50,10 +50,10 @@ function deleteResquest(id) {
 
 }
 
-async function deleteItem(id) {
+async function deleteItem(id){
     console.log(id)
     let response = await deleteResquest(id);
-    console.log(response)
+    resultModal(response.message);
 }
 
 async function renderTable() {
@@ -91,8 +91,7 @@ async function renderTable() {
                 <div class="text-slate-900">${data.cliente.nome + " " + data.cliente.sobrenome}</div>
             </td>
             <td class="px-5 py-3 border-b border-slate-200 first:pl-3 last:pr-3 last:from-transparent last:to-white last:to-[12px] last:pl-5 last:sticky last:right-0">
-                <button class="text-xs bg-green-500 text-white p-2 rounded-sm mr-2" onclick="editModal(${data.id})">Alterar</button>
-                <button class="text-xs bg-red-500 text-white p-2 rounded-sm mr-2" onclick="delModal(${data.id})">Deletar</button>
+                <button class="text-xs bg-red-500 text-white p-2 w-full rounded-sm mr-2" onclick="delModal(${data.id})">Checkout</button>
             </td>
         </tr>`
     })
@@ -170,7 +169,7 @@ function delModal(id) {
     modalContent.innerHTML = `<div class="w-[250px] h-fit bg-white text-black">
     <div class="px-4 py-2 border-b-[1px] border-gray-600">Deletar</div>
     <div class="px-4 py-4">
-        <p>Deseja remover este item? </p>
+        <p>Deseja fazer checkout dessa reserva? </p>
         <div class="mt-4 flex justify-between">
             <button class="text-xs bg-green-500 text-white py-2 px-4 rounded-sm mr-2"
                 onclick="deleteItem(${id})">Confirmar</button>
@@ -187,4 +186,37 @@ modal.addEventListener('click', (e) => {
 
 function modalClose() {
     modal.classList.toggle('active')
+}
+
+function delModal(id){
+    console.log(id);
+    modal.classList.toggle('active');
+    modalContent.innerHTML = `<div class="w-[250px] h-fit bg-white text-black">
+    <div class="px-4 py-2 border-b-[1px] border-gray-600">Deletar</div>
+    <div class="px-4 py-4">
+        <p>Deseja remover este item? </p>
+        <div class="mt-4 flex justify-between">
+            <button class="text-xs bg-green-500 text-white py-2 px-4 rounded-sm mr-2"
+                onclick="deleteItem(${id})">Confirmar</button>
+            <button class="text-xs bg-red-500 text-white py-2 px-4 rounded-sm mr-2"
+                onclick="modalClose()">Cancelar</button>
+        </div>
+    </div>
+</div>`;
+}
+
+function resultModal(message){
+
+    modalContent.innerHTML = `<div class="w-[250px] h-fit bg-white text-black">
+    <div class="px-4 py-2 border-b-[1px] border-gray-600">Resultado</div>
+    <div class="px-4 py-4">
+        <p>${message}</p>
+        <div class="mt-4 flex justify-between">
+            <button class="text-xs bg-green-500 text-white py-2 px-4 rounded-sm mr-2"
+                onclick="modalClose()">Confirmar</button>
+        </div>
+    </div>
+</div>`;
+
+    renderTable();
 }
